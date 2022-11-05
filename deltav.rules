@@ -1,2 +1,2 @@
 # Some DeltaV rules
-alert udp any any -> $HOME_NET 18507 (msg:"DeltaV Setpoint Change or Alarm"; content:"|FA CE|"; startswith; content:"|00 02|"; offset:4; depth:6; content:"|03 04|"; offset:16; depth:18; classtype:reconfiguration; sid:1234;)
+# alert udp any any -> $HOME_NET 18507 (msg:"DeltaV Setpoint Change or Alarm"; content:"|FA CE|"; startswith; content:"|00 02|"; offset:4; depth:6; content:"|03 04|"; offset:16; depth:18; classtype:reconfiguration; sid:1234;)
