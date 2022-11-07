@@ -5,4 +5,4 @@
 alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: Controller Told to Change Setpoint"; content:"|0A 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1234;)
 
 # I want to know if new devices are connecting to an OPC UA server
-alert tcp any any -> $HOME_NET 9409 (msg:"DeltaV: New OPC UA Connection"; content:"/DvOpcUaServer"; classtype:recon; sid:1235;)
+alert tcp any any -> $HOME_NET 9409 (msg:"DeltaV: New OPC UA Connection"; content:"DvOpcUaServer"; classtype:recon; sid:1235;)
