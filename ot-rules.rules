@@ -8,8 +8,8 @@ alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: Controller Told to Change Set
 alert tcp any any -> $HOME_NET 9409 (msg:"DeltaV: New OPC UA Connection"; content:"DvOpcUaServer"; classtype:recon; sid:1235;)
 
 
-# Alert if the OPC UA server reports accepts having SecurityPolicy#None
-alert tcp any any -> $HOME_NET 9409 (msg:"DeltaV: OPC UA No Security Policy"; content:"SecurityPolicy#None"; classtype:recon; sid:1236;)
-alert tcp any any -> $HOME_NET 49320 (msg:"Kepware OPC UA No Security Policy"; content:"SecurityPolicy#None"; classtype:recon; sid:1236;)
-alert tcp any any -> $HOME_NET 4840  (msg:"OPC UA No Security Policy"; content:"SecurityPolicy#None"; classtype:recon; sid:1236;)
+# Alert if the OPC UA server reports accepts having SecurityPolicyNone
+alert tcp any any -> $HOME_NET 9409 (msg:"DeltaV: OPC UA No Security Policy"; content:"SecurityPolicy|23|None"; classtype:recon; sid:1236;)
+alert tcp any any -> $HOME_NET 49320 (msg:"Kepware OPC UA No Security Policy"; content:"SecurityPolicy|23|None"; classtype:recon; sid:1237;)
+alert tcp any any -> $HOME_NET 4840  (msg:"OPC UA No Security Policy"; content:"SecurityPolicy|23|None"; classtype:recon; sid:1238;)
 
