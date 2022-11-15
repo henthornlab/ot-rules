@@ -2,7 +2,12 @@
 # DeltaV Minor: Controllers are told to change their setpoints
 alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: Controller Told to Change Setpoint"; content:"|0A 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1234;)
 # DeltaV Major: New downloads to stations (including operator, application, controllers)
-alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: ***ALERT STATION DOWNLOAD***"; content:"|08 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1239;)
+# First attempt at download rule worked relatively well, but lots of download alerts happened.
+#alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: ***ALERT STATION DOWNLOAD***"; content:"|08 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1239;)
+# Let's change it to alert at the start of a download and then characterize all the rest as config changes (minor)
+alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: ***ALERT STATION DOWNLOAD STARTED***"; content:"STARTDEV"; classtype:reconfiguration; sid:1239;)
+alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: Station configuration message"; content:"|08 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1240;)
+
 
 
 ## -- OPC UA rules -----------------------------------------------
