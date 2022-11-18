@@ -5,13 +5,13 @@
 # alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: ***ALERT STATION DOWNLOAD***"; content:"|08 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1239;)
 # Let's change it to alert at the start of a download and then characterize all the rest as config changes (minor)
 alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: ***ALERT STATION DOWNLOAD STARTED***"; content:"STARTDEV"; classtype:reconfiguration; sid:1239;)
-alert telnet any any --> $HOME_NET 23 (msg:"DeltaV: ***Admin Telnet Session on Switch***"; content:"|28|Emerson|20|RM100|29|"; classtype:reconfiguration; sid:1241;)
+alert tcp any any --> $HOME_NET 23 (msg:"DeltaV: ***Admin Telnet Session on Switch***"; content:"|28|Emerson|20|RM100|29|"; classtype:reconfiguration; sid:1241;)
 
 
 # DeltaV Minor Rules: Controllers are told to change their setpoints
 alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: Controller Told to Change Setpoint"; content:"|0A 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1234;)
 # alert udp any any -> $HOME_NET 18507 (msg:"DeltaV: Station configuration message"; content:"|08 01|"; offset:16; depth:2; classtype:reconfiguration; sid:1240;)
-alert telnet any any --> $HOME_NET 23 (msg:"DeltaV: ***Telnet Session to Switch Started***"; content:"RM100|20|Release"; classtype:reconfiguration; sid:1240;)
+alert tcp any any --> $HOME_NET 23 (msg:"DeltaV: ***Telnet Session to Switch Started***"; content:"RM100|20|Release"; classtype:reconfiguration; sid:1240;)
 
 ## -- OPC UA rules -----------------------------------------------
 # I want to know if new devices are connecting to an OPC UA server
